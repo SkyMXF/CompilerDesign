@@ -28,15 +28,15 @@ c全局声明写在%{...%}内，可以不加。
 
 例：  
 ```
-  %{  
-  int wordCounter;  
-  %}  
-  %x COMMENT  
-  nondigit    ([_A-Za-z])  
-  digit       ([0-9])  
-  integer     ({digit}+)  
-  identifier  ({nondigit}({nondigit}|{digit})*)   
-  blank_chars ([ \f\r\t\v]+)  
+  %{
+  int wordCounter;
+  %}
+  %x COMMENT
+  nondigit    ([_A-Za-z])
+  digit       ([0-9])
+  integer     ({digit}+)
+  identifier  ({nondigit}({nondigit}|{digit})*)
+  blank_chars ([ \f\r\t\v]+)
   %%
 ```
 ### 第二部分 符号及对应操作规则
@@ -48,14 +48,14 @@ c全局声明写在%{...%}内，可以不加。
 简单来说，仅存在5中表示:```{已声明标记},"未声明标记",\n,.,<模式名>前四种标记```  
 例：  
 ```
-{identifier}    { /*do something*/ }  
-{integer}       { /*do something*/ }  
-{blank_chars}   { /*do nothing*/ }  
-\n            { /*do nothing*/ }  
-"//"          { BEGIN COMMENT; }  
-.             { /*do something*/ }  
-<COMMENT>\n   { BEGIN INITIAL; }  
-<COMMENT>.    { /*do nothing*/ }   
+{identifier}    { /*do something*/ }
+{integer}       { /*do something*/ }
+{blank_chars}   { /*do nothing*/ }
+\n            { /*do nothing*/ }
+"//"          { BEGIN COMMENT; }
+.             { /*do something*/ }
+<COMMENT>\n   { BEGIN INITIAL; }
+<COMMENT>.    { /*do nothing*/ }
 %% 
 ```
 ### 第三部分 C代码
